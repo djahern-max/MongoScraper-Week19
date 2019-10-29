@@ -5,8 +5,8 @@ var path = require('path');
 var request = require('request');
 var cheerio = require('cheerio');
 
-var comment = require('../models/Comment');
-var article = require('../models/Article');
+var Comment = require('../models/Comment.js');
+var Article = require('../models/Article.js');
 
 router.get('/', function(req, res) {
   res.redirect('/articles');
@@ -19,6 +19,7 @@ router.get('/scrape', function(req, res) {
 
     $('.c-entry-box--compact__title').each(function(i, element) {
       var result = {};
+
       result.title = $(this)
         .children('a')
         .text();
@@ -44,7 +45,7 @@ router.get('/scrape', function(req, res) {
             }
           });
         } else {
-          console.log('Article already exists');
+          console.log('Article already exists.');
         }
       } else {
         console.log('Not saved to DB, missing data');
@@ -53,7 +54,6 @@ router.get('/scrape', function(req, res) {
     res.redirect('/');
   });
 });
-
 router.get('/articles', function(req, res) {
   Article.find()
     .sort({ _id: -1 })
