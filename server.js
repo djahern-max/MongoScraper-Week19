@@ -1,6 +1,10 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var logger = require('morgan');
+const connectDB = require('./config/db');
+
+//Connect Database
+connectDB();
 
 var express = require('express');
 var app = express();
