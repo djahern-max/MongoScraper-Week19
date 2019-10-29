@@ -9,7 +9,7 @@ connectDB();
 var express = require('express');
 var app = express();
 
-app.get('/', (req, res) => res.send('API Running'));
+// app.get('/', (req, res) => res.send('API Running'));
 
 app.use(logger('dev'));
 app.use(
